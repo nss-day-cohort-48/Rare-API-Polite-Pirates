@@ -1,0 +1,22 @@
+[
+    {
+        "model": "rareapi.comment",
+        "pk": 1,
+        "fields": {
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "created_on": "2013-03-16T17:41:28+00:00",
+            "author": 1,
+            "post": 1
+        }
+    },
+    {
+        "model": "rareapi.comment",
+        "pk": 2,
+        "fields": {
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "created_on": "2013-03-16T17:41:28+00:00",
+            "author": 1,
+            "post": 2
+        }
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "model": "rareapi.postreaction",
+        "pk": 1,
+        "fields": {
+            "post_id": 1,
+            "user_id": 1,
+            "reaction_id": 1
+        }
+    },
+    {
+        "model": "rareapi.postreaction",
+        "pk": 2,
+        "fields": {
+            "post_id": 2,
+            "user_id": 2,
+            "reaction_id": 2
+        }
+    }
+]
