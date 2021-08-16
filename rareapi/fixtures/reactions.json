@@ -1,0 +1,18 @@
+[
+    {
+        "model": "rareapi.reaction",
+        "pk": 1,
+        "fields": {
+            "label": "urna",
+            "image_url": "https://www.gannett-cdn.com/presto/2020/04/17/USAT/7620a49d-39e9-4db9-a96c-89f3d1deb1ae-facebookreact2.png?width=660&height=660&fit=crop&format=pjpg&auto=webp"
+        }
+    },
+    {
+        "model": "rareapi.reaction",
+        "pk": 2,
+        "fields": {
+            "label": "congue",
+            "image_url": "https://www.gannett-cdn.com/presto/2020/04/17/USAT/7620a49d-39e9-4db9-a96c-89f3d1deb1ae-facebookreact2.png?width=660&height=660&fit=crop&format=pjpg&auto=webp"
+        }
+    }
+]

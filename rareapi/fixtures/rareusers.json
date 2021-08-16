@@ -1,0 +1,24 @@
+[
+    {
+        "model": "rareapi.rareuser",
+        "pk": 1,
+        "fields": {
+            "user_id": 1,
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "profile_image": "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png",
+            "active": true,
+            "created_on": "2013-03-16T17:41:28+00:00"
+        }
+    },
+    {
+        "model": "rareapi.rareuser",
+        "pk": 2,
+        "fields": {
+            "user_id": 2,
+            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "profile_image": "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png",
+            "active": true,
+            "created_on": "2013-03-16T17:41:28+00:00"
+        }
+    }
+]

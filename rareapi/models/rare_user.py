@@ -4,7 +4,7 @@ from django.db.models.fields import BooleanField, DateField, DateTimeField
 from django.db.models.fields.files import ImageField
 
 
-class User(models.Model):
+class RareUser(models.Model):
     """User Model
     Args:
         models (OneToOneField): The user information for the gamer
