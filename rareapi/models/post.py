@@ -8,8 +8,8 @@ class Post(models.Model):
         
     """
     title = models.CharField(max_length=100)
-    category_id = models.ForeignKey("Category", on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.CASCADE)
+    category = models.ForeignKey("Category", on_delete=models.CASCADE)
+    rare_user = models.ForeignKey("RareUser", on_delete=models.CASCADE)
     publication_date = models.DateTimeField()
     image_url = models.ImageField() #install "pip install Pillow" 
     content = models.CharField(max_length=500)
