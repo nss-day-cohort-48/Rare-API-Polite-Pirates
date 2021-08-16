@@ -1,6 +1,6 @@
 [
     {
-        "model": "rareapi.post_reaction",
+        "model": "rareapi.postreaction",
         "pk": 1,
         "fields": {
             "post_id": 1,
@@ -9,8 +9,8 @@
         }
     },
     {
-        "model": "rareapi.post_reaction",
-        "pk": 1,
+        "model": "rareapi.postreaction",
+        "pk": 2,
         "fields": {
             "post_id": 2,
             "user_id": 2,
