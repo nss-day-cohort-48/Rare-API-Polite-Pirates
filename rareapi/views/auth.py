@@ -10,7 +10,7 @@ from rareapi.models import RareUser
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_user(request):
-    '''Handles the authentication of a rareuser
+    '''Handlesss the authentication of a rareuser
 
     Method arguments:
       request -- The full HTTP request object
