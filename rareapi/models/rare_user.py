@@ -8,4 +8,9 @@ class RareUser(models.Model):
     """Rare User Model"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=50)
-    profile_image_url = models.TextField()
+    profile_img = ImageField()
+    active = BooleanField()
+    created_on = DateTimeField()
+
+    def __str__(self):
+        return self.user.username     
