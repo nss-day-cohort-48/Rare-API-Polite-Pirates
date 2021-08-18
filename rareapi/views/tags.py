@@ -1,8 +1,10 @@
 """View module for handling requests about game types"""
+from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework import status
 from rareapi.models import Tag
 
 
@@ -12,6 +14,23 @@ class TagView(ViewSet):
         list: returns a list of all Tags
         retrieve: returns a single game type based on id
     """
+
+    def create(self, request):
+        """Handle POST operations
+        Returns:
+            Response -- JSON serialized game instance
+        """
+        tag = Tag()
+        tag.label = request.data["label"]
+
+        try:
+            tag.save()
+            serializer = TagSerializer(
+                tag, context={'request': request})
+            return Response(serializer.data)
+
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_404_NOT_FOUND)
 
     def retrieve(self, request, pk):
         """Retrieves a single Tag
