@@ -41,6 +41,18 @@ class CategoryView(ViewSet):
         serializer = CategorySerializer(category, many=True, context={'request': request})
         return Response(serializer.data)
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for single game
+        Returns:
+            Response -- JSON serialized game instance
+        """
+        try:
+            category = Category.objects.get(pk=pk)
+            serializer = CategorySerializer(category, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
     def destroy(self, request, pk=None):
         """Handle DELETE requests for a single category
         Returns:
