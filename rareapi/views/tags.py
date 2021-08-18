@@ -61,6 +61,34 @@ class TagView(ViewSet):
             tags, context={'request': request}, many=True)
         return Response(serializer.data)
 
+    def update(self, request, pk=None):
+        """Handle PUT requests for a tag
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        tag = Tag.objects.get(pk=pk)
+
+        tag.label = request.data["label"]
+        tag.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+    
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single tag
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            tag = Tag.objects.get(pk=pk)
+            tag.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Tag.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class TagSerializer(serializers.ModelSerializer):
     """Tag model serializer returns __all__ fields
