@@ -1,14 +1,15 @@
 """View module for handling requests about posts"""
+from django.http import HttpResponseServerError
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from rareapi.models.category import Category
 from rareapi.models.rare_user import RareUser
 from rareapi.models.post import Post
-from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from rest_framework import status
+from datetime import datetime
 
 
 class PostView(ViewSet):
@@ -53,11 +54,12 @@ class PostView(ViewSet):
         """
         rare_user = RareUser.objects.get(user=request.auth.user)
         category = Category.objects.get(pk=request.data["category"])
-
+        timestamp = request.data["publication_date"]
+        
         post = Post()
         post.title = request.data["title"]
         post.content = request.data["content"]
-        post.publication_date = request.data["publication_date"]
+        post.publication_date = datetime.fromtimestamp(timestamp/1000)
         post.image_url = request.data["image_url"]
         post.approved = request.data["approved"]
         post.rare_user = rare_user
