@@ -55,6 +55,16 @@ class CommentView(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def update(self, request, pk=None):
+        comment = Comment.objects.get(pk=pk)
+
+        comment.content = request.data["content"]
+        # comment.created_on = request.data = request.data["createdOn"]
+        # comment.auther = request.data["rareuser"]
+        # comment.post = request.data["post"]
+        comment.save()
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
             
 class CommentSerializer(serializers.ModelSerializer):
 
