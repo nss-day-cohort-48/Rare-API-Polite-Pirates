@@ -25,8 +25,26 @@ class CommentView(ViewSet):
             comments, many=True, context={'request': request})
         return Response(serializer.data)
 
+    def create(self, request):
+
+        rareuser = Comment.objects.get(user=request.auth.user)
+
+        rareuser
+        rareuser.content = request.data["content"]
+        rareuser.created_on = request.data["createdOn"]
+        rareuser.author = rareuser
+        rareuser.post = request.data["post"]
+
+        try:
+            rareuser.save()
+            serializer = CommentSerializer(rareuser, context={'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message},
+            status=status.HTTP_400_BAD_REQUEST)
+
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ( 'id', 'content', 'created_on', 'author', 'post')
+        fields = ( 'id', 'content', 'created_on', 'author', 'post' )
