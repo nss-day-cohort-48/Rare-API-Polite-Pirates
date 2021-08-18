@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from rareapi.views import register_user, login_user, CategoryView
+from rareapi.views import register_user, login_user, CategoryView, PostView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'categories', CategoryView, 'category')
+router.register(r'posts', PostView, 'post')
+
 
 urlpatterns = [
     path('', include(router.urls)),
