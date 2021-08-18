@@ -1,4 +1,5 @@
 """View module for handling requests about posts"""
+from rareapi.models.category import Category
 from rareapi.models.rare_user import RareUser
 from rareapi.models.post import Post
 from django.http import HttpResponseServerError
@@ -6,6 +7,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from rest_framework import status
 
 
 class PostView(ViewSet):
@@ -42,6 +45,31 @@ class PostView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
+    def create(self, request):
+        """Handle POST operations for posts
+
+        Returns:
+            Response -- JSON serialized post instance
+        """
+        rare_user = RareUser.objects.get(user=request.auth.user)
+        category = Category.objects.get(pk=request.data["category"])
+
+        post = Post()
+        post.title = request.data["title"]
+        post.content = request.data["content"]
+        post.publication_date = request.data["publication_date"]
+        post.image_url = request.data["image_url"]
+        post.approved = request.data["approved"]
+        post.rare_user = rare_user
+        post.category = category
+
+        try:
+            post.save()
+            serializer = PostSerializer(post, context={'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users name"""
@@ -49,9 +77,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+
 class RareUserSerializer(serializers.ModelSerializer):
     """HI"""
     user = UserSerializer(many=False)
+
     class Meta:
         model = RareUser
         fields = ['user']
