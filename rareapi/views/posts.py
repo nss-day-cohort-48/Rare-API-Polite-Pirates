@@ -1,9 +1,11 @@
 """View module for handling requests about posts"""
+from rareapi.models.rare_user import RareUser
 from rareapi.models.post import Post
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 
 class PostView(ViewSet):
@@ -41,14 +43,31 @@ class PostView(ViewSet):
             return HttpResponseServerError(ex)
 
 
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for users name"""
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class RareUserSerializer(serializers.ModelSerializer):
+    """HI"""
+    user = UserSerializer(many=False)
+    class Meta:
+        model = RareUser
+        fields = ['user']
+
+
 class PostSerializer(serializers.ModelSerializer):
     """JSON serializer for posts
 
     Arguments:
         serializer type
     """
+    rare_user = RareUserSerializer(many=False)
+
     class Meta:
+        """HI"""
         model = Post
         fields = ('id', 'title', 'category', 'rare_user',
                   'publication_date', 'image_url', 'content', 'approved')
-        depth = 2
+        depth = 1
