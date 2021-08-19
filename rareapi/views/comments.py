@@ -65,8 +65,25 @@ class CommentView(ViewSet):
         # comment.post = request.data["post"]
         comment.save()
         return Response({}, status=status.HTTP_204_NO_CONTENT)
-            
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for users name"""
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class RareUserSerializer(serializers.ModelSerializer):
+    """HI"""
+    user = UserSerializer(many=False)
+
+    class Meta:
+        model = RareUser
+        fields = ['user']
+
 class CommentSerializer(serializers.ModelSerializer):
+
+    author = RareUserSerializer(many=False)
 
     class Meta:
         model = Comment
