@@ -26,25 +26,6 @@ class AuthorView(ViewSet):
         serializer = RareUserSerializer(authors, many=True, context={'request': request})
         return Response(serializer.data)
 
-    def update(self, request, pk=None):
-        """[summary]
-
-        Args:
-            request ([type]): [description]
-            pk ([type], optional): [description]. Defaults to None.
-
-        Returns:
-            [type]: [description]
-        """
-        author = RareUser.objects.get(pk=pk)
-
-        author.user = request.data["user"]
-        author.bio = request.data["bio"]
-
-        author.save()
-
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
-
     def retrieve(self, request, pk=None):
         """Handle GET requests for single author
         Returns:
