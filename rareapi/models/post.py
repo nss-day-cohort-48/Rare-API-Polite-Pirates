@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
     rare_user = models.ForeignKey("RareUser", on_delete=models.CASCADE)
-    publication_date = models.DateTimeField()
+    publication_date = models.IntegerField() #changed this to hold timestamps
     image_url = models.ImageField() #install "pip install Pillow" 
     content = models.CharField(max_length=500)
     approved = models.BooleanField()

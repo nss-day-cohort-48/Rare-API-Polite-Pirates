@@ -9,7 +9,6 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from datetime import datetime
 
 
 class PostView(ViewSet):
@@ -54,12 +53,11 @@ class PostView(ViewSet):
         """
         rare_user = RareUser.objects.get(user=request.auth.user)
         category = Category.objects.get(pk=request.data["category"])
-        timestamp = request.data["publication_date"]
-        
+
         post = Post()
         post.title = request.data["title"]
         post.content = request.data["content"]
-        post.publication_date = datetime.fromtimestamp(timestamp/1000)
+        post.publication_date = request.data["publication_date"]
         post.image_url = request.data["image_url"]
         post.approved = request.data["approved"]
         post.rare_user = rare_user
