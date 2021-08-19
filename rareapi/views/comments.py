@@ -28,11 +28,11 @@ class CommentView(ViewSet):
     def create(self, request):
 
         rareuser = RareUser.objects.get(user=request.auth.user)
-        post = Post.objects.get(pk=request.data["post"])
+        post = Post.objects.get(pk=request.data["post_id"])
 
         comment = Comment()
         comment.content = request.data["content"]
-        comment.created_on = request.data["createdOn"]
+        comment.created_on = request.data["created_on"]
         comment.author = rareuser
         comment.post = post
 
