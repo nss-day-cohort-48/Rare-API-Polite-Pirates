@@ -4,4 +4,5 @@ from .comments import Comment, CommentView
 from .tags import TagView
 from .categories import CategoryView
 from .posts import PostView
+from .authors import AuthorView
 
