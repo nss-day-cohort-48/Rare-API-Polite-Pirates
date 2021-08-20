@@ -7,7 +7,7 @@ class Comment(models.Model):
         models ([type]): [description]
     """
     content = models.CharField( max_length=1000)
-    created_on = models.DateTimeField()
+    created_on = models.IntegerField()  #changed this to hold timestamps
     author = models.ForeignKey("RareUser", on_delete=models.CASCADE)
     post = models.ForeignKey("Post", on_delete=models.CASCADE)
 

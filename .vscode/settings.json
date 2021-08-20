@@ -1,18 +1,19 @@
 {
-  "python.formatting.autopep8Path": "/Users/jaclynfrench/.pyenv/shims/autopep8",
-  "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true,
-  "python.linting.pylintArgs": [
-    "--load-plugins=pylint_django",
-    "--django-settings-module=Rare.settings"
-  ],
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "driver": "SQLite",
-      "name": "rare",
-      "database": "db.sqlite3"
-    }
-  ],
+    "python.formatting.autopep8Path": "/Users/jaclynfrench/.pyenv/shims/autopep8",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--django-settings-module=Rare.settings",
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "rare",
+            "database": "db.sqlite3"
+        }
+    ],
   "python.pythonPath": "/Users/calebwagner/.local/share/virtualenvs/Rare-API-Polite-Pirates-sya4UmzW/bin/python"
+
 }

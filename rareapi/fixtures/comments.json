@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "created_on": "2013-03-16T17:41:28+00:00",
+            "created_on": 1629403224,
             "author": 1,
             "post": 1
         }
@@ -14,7 +14,7 @@
         "pk": 2,
         "fields": {
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "created_on": "2013-03-16T17:41:28+00:00",
+            "created_on": 1629403224,
             "author": 1,
             "post": 2
         }
