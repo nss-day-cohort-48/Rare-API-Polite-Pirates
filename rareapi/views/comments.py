@@ -28,11 +28,11 @@ class CommentView(ViewSet):
     def create(self, request):
 
         rareuser = RareUser.objects.get(user=request.auth.user)
-        post = Post.objects.get(pk=request.data["post"])
+        post = Post.objects.get(pk=request.data["post_id"])
 
         comment = Comment()
         comment.content = request.data["content"]
-        comment.created_on = request.data["createdOn"]
+        comment.created_on = request.data["created_on"]
         comment.author = rareuser
         comment.post = post
 
@@ -65,8 +65,25 @@ class CommentView(ViewSet):
         # comment.post = request.data["post"]
         comment.save()
         return Response({}, status=status.HTTP_204_NO_CONTENT)
-            
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for users name"""
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class RareUserSerializer(serializers.ModelSerializer):
+    """HI"""
+    user = UserSerializer(many=False)
+
+    class Meta:
+        model = RareUser
+        fields = ['user']
+
 class CommentSerializer(serializers.ModelSerializer):
+
+    author = RareUserSerializer(many=False)
 
     class Meta:
         model = Comment
